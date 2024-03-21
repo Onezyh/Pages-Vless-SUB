@@ -17,67 +17,25 @@ https://github.com/cmliu/WorkerVless2sub/tree/main
 
 # Workers 部署方法 [关注博主](https://www.youtube.com/@onezyhcn)
 
-### 1. 部署 Cloudflare Worker：
+### 1. 部署 Cloudflare Pages：
 
-   - 在 Cloudflare Worker 控制台中创建一个新的 Pages。
+   - 在 Cloudflare 控制台中创建一个新的 Pages。
    - 将 [worker.zip](https://github.com/Onezyh/Pages-Vless-USB/blob/master/worker.zip)  的文件上传到 Pages中。
 
 
-### 2. 添加你的专属优选线路：
+### 2. 在Pages项目中设置你的专属UUID：
 
-**2.1 修改 addresses 参数示例**
-
- - 修改 `addresses` 参数添加本地静态的优选线路，若不带端口号默认8443，不支持生成非TLS订阅，#号后为备注别名，例如：
-	```js
-	let addresses = [
-		'icook.tw:2053#优选域名',
-		'cloudflare.cfgo.cc#优选官方线路',
-		'185.221.160.203:443#电信优选IP',
-	];
-	```
-	该方式仅推荐添加优选域名的部分，频繁变更的优选推荐通过 `addressesapi` 来实现。
+ - 在Cloudflare打开刚刚所创建的Pages中打开设置选项，选择【环境变量】选项，点击【添加变量】。
+ - 变量名称：UUID
+ - 变量值：你生成的UUID
+ - UUID值可通过UUID在线生成或V2rayN进行生成；
 
 
- **2.2 修改 addressesapi 参数示例**
+ **3 再次上传你所下载资产文件**
  
- - 修改 `addressesapi` 参数，在脚本中设置 `addressesapi` 变量为 **优选IP地址txt文件** 的 URL。例如：
-	```js
-	let addressesapi = [
-		'https://raw.githubusercontent.com/onezyhcn/WorkerVless2sub/main/addressesapi.txt',
- 		'https://addressesapi.090227.xyz/CloudFlareYes',
-	];
-	```
-	可参考 [addressesapi.txt](https://github.com/Onezyh/Worker-Vless-2-USB/blob/master/addressesapi.txt) 内容格式 自行搭建。
-
-
-<details>
-<summary><code><strong>「 我不是小白！我有IP库！我知道IPtest是什么！我也有csv测速文件！ 」</strong></code></summary>
-
- 
-  **2.3 修改 addressescsv 参数示例**
-  
- - 修改 `addressescsv` 参数，在脚本中设置 `addressescsv` 变量为 **iptest测速结果csv文件地址** 的 URL。例如：
-	```js
-	let DLS = 4;//速度下限
-	let addressescsv = [
-		'https://github.com/Onezyh/Worker-Vless-2-USB/blob/master/addressescsv.csv',
- 		'https://github.com/Onezyh/Worker-Vless-2-USB/blob/master/addressescsv.csv',
-	];
-	```
-	`DLS` 为要求满足的最低速度，不满足改数值以上的IP将不会添加至优选订阅内容。注意：不考虑单位，只看数值，请按照您的测速结果而定。
-
- </details>
-
-
-### 3. 修改 快速订阅入口 以及 默认内置 Vless 节点信息：
-
-  例如您的workers项目域名为：`sub.onezyhcnssss.workers.dev`；
-   - 添加 `TOKEN` 变量，快速订阅访问入口，默认值为: `auto` ，获取订阅器默认节点订阅地址即 `/auto` ，例如 `https://sub.onezyhcn.workers.dev/auto`
-   - 添加 `HOST` 变量，例如 `edgetunnel-2z2.pages.dev`；
-   - 添加 `UUID` 变量，例如 `30e9c5c8-ed28-4cd9-b008-dc67277f8b02`；
-   - 添加 `PATH` 变量，例如 `/?ed=2048`；
-
-
+ - 在Cloudflare打开刚刚所创建的Pages中打开设置选项，选择【部署选项】，点击最下方的【创建新的部署】；
+ - 在【创建新的部署】选项中再次上传第一次部署时所下载的资产文件
+ -  [worker.zip](https://github.com/Onezyh/Pages-Vless-USB/blob/master/worker.zip)  
 
 # 订阅生成器 使用方法[关注博主](https://www.youtube.com/@onezyhcn)
 
